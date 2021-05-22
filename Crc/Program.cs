@@ -219,6 +219,7 @@ namespace Crc
             gfx.DrawString(localidad, fontCourierBold15, XBrushes.Black, 25, 131);
             // gfx.DrawMatrixCode()
 
+
             XFont fontCourier7 = new XFont("Courier New", 7, XFontStyle.Regular);
             int posy = 185;
             foreach (string cuerpo in cuerpos)
