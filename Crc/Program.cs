@@ -222,10 +222,18 @@ namespace Crc
             gfx.DrawImage(img, 0, 0);
 
             //Draw the QR
-            BarcodeWriter bcWriter = new BarcodeWriter();
-            bcWriter.Format = BarcodeFormat.QR_CODE;
-            Bitmap bm = new Bitmap(bcWriter.Write(qr1), 150, 150);
-            bm.Save("asdasd.jpg");
+            var bcWriter = new ZXing.BarcodeWriter
+            {
+                Format = ZXing.BarcodeFormat.QR_CODE,
+                Options = new ZXing.Common.EncodingOptions
+                {
+                    Height = 300,
+                    Width = 300,
+                    Margin = 0
+                },
+            };
+
+            Bitmap bm = new Bitmap(bcWriter.Write(qr1), 300, 300);
             XImage img2 = XImage.FromGdiPlusImage((Image)bm);
             img2.Interpolate = false;
             gfx.DrawImage(img2, 0, 0);
