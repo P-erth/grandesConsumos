@@ -21,7 +21,7 @@ namespace Crc
 
             
             int pagina = text2.Length / 9009;
-            int pivote = 7;
+            int pivote = 8;
 
             // Create a new PDF document
             PdfDocument document = new PdfDocument();
@@ -33,11 +33,12 @@ namespace Crc
             XGraphics gfx = XGraphics.FromPdfPage(page);
 
             //XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
-            XFont font = new XFont("Courier", 9, XFontStyle.Regular);
+            XFont fontCourier8 = new XFont("Courier", 8, XFontStyle.Regular);
+
 
             String nis = text2.Substring(0, pivote);
 
-            String nombre = text2.Substring(++pivote, 30);
+            String nombre = text2.Substring(pivote, 30);
 
             String domiReal = text2.Substring(pivote += 30, 30);
             String postal = text2.Substring(pivote += 30, 30);
@@ -231,13 +232,17 @@ namespace Crc
             gfx.DrawImage(img2, 0, 0);
 
             // Draw the text
-
+            XFont fontCourierBold15 = new XFont("Courier-Bold", 15);
+            XFont fontCourierBold12 = new XFont("Courier-Bold", 12, XFontStyle.Bold);
             //gfx.DrawString("Hello, World!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height),XStringFormats.Center);
-            gfx.DrawString(nis, font, XBrushes.Black, 0, 30);
-            gfx.DrawString(nombre, font, XBrushes.Black, 0, 40);
-            gfx.DrawString(domiReal, font, XBrushes.Black, 0, 50);
-            gfx.DrawString(postal, font, XBrushes.Black, 0, 60);
-            gfx.DrawString(localidad, font, XBrushes.Black, 0, 70);
+
+
+
+            gfx.DrawString("NIS:  " + (long.Parse(nis)).ToString(), fontCourierBold15, XBrushes.Black, 400, 90);
+            gfx.DrawString(nombre, fontCourierBold12, XBrushes.Black, 10, 40);
+            gfx.DrawString(domiReal, fontCourierBold12, XBrushes.Black, 10, 50);
+            gfx.DrawString(postal, fontCourierBold12, XBrushes.Black, 10, 60);
+            gfx.DrawString(localidad, fontCourierBold12, XBrushes.Black, 10, 70);
             // gfx.DrawMatrixCode()
 
             
