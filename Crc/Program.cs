@@ -18,7 +18,7 @@ namespace Crc
             string text2 = System.IO.File.ReadAllText(@path2);
             XImage img = XImage.FromFile("template2.jpg");
 
-
+            
             int pagina = text2.Length / 9009;
             int pivote = 7;
 
@@ -92,7 +92,115 @@ namespace Crc
             String lspConsumo = text2.Substring(pivote += 4, 8);
             String lspSecuencia = text2.Substring(pivote += 8, 10);
             String cuerpoA1 = text2.Substring(pivote += 10, 85);
+            String cuerpoA2 = text2.Substring(pivote += 85, 85);
+            String cuerpoA3 = text2.Substring(pivote += 85, 85);
+            String cuerpoA4 = text2.Substring(pivote += 85, 85);
+            String cuerpoA5 = text2.Substring(pivote += 85, 85);
+            String cuerpoA6 = text2.Substring(pivote += 85, 85);
+            String cuerpoA7 = text2.Substring(pivote += 85, 85);
+            String cuerpoA8 = text2.Substring(pivote += 85, 85);
+            String cuerpoA9 = text2.Substring(pivote += 85, 85);
+            String cuerpoA10 = text2.Substring(pivote += 85, 85);
+            String cuerpoA11 = text2.Substring(pivote += 85, 85);
+            String cuerpoA12 = text2.Substring(pivote += 85, 85);
+            String cuerpoA13 = text2.Substring(pivote += 85, 85);
+            String cuerpoA14 = text2.Substring(pivote += 85, 85);
+            String cuerpoA15 = text2.Substring(pivote += 85, 85);
+            String cuerpoA16 = text2.Substring(pivote += 85, 85);
+            String cuerpoA17 = text2.Substring(pivote += 85, 85);
+            String cuerpoA18 = text2.Substring(pivote += 85, 85);
+            String cuerpoA19 = text2.Substring(pivote += 85, 85);
+            String cuerpoA20 = text2.Substring(pivote += 85, 85);
+            String cuerpoA21 = text2.Substring(pivote += 85, 85);
+            String cuerpoA22 = text2.Substring(pivote += 85, 85);
+            String cuerpoA23 = text2.Substring(pivote += 85, 85);
+            String cuerpoA24 = text2.Substring(pivote += 85, 85);
+            String cuerpoA25 = text2.Substring(pivote += 85, 85);
+            String cuerpoA26 = text2.Substring(pivote += 85, 85);
+            String cuerpoA27 = text2.Substring(pivote += 85, 85);
+            String cuerpoA28 = text2.Substring(pivote += 85, 85);
+            String cuerpoA29 = text2.Substring(pivote += 85, 85);
+            String cuerpoA30 = text2.Substring(pivote += 85, 85);
+            String cuerpoA31 = text2.Substring(pivote += 85, 85);
+            String cuerpoA32 = text2.Substring(pivote += 85, 85);
+            String cuerpoA33 = text2.Substring(pivote += 85, 85);
+            String cuerpoA34 = text2.Substring(pivote += 85, 85);
+            String cuerpoA35 = text2.Substring(pivote += 85, 85);
+            String cuerpoA36 = text2.Substring(pivote += 85, 85);
+            String cuerpoA37 = text2.Substring(pivote += 85, 85);
+            String cuerpoA38 = text2.Substring(pivote += 85, 85);
+            String cuerpoA39 = text2.Substring(pivote += 85, 85);
+            String cuerpoA40 = text2.Substring(pivote += 85, 85);
+            String deudasA1A = text2.Substring(pivote += 85, 50);
+            String deudasA1B = text2.Substring(pivote += 50, 50);
+            String deudasA1C = text2.Substring(pivote += 50, 50);
 
+            String estadisticos1 = text2.Substring(pivote += 50, 50);
+            String estadisticos2 = text2.Substring(pivote += 50, 50);
+            String estadisticos3 = text2.Substring(pivote += 50, 50);
+            String estadisticos4 = text2.Substring(pivote += 50, 50);
+            String estadisticos5 = text2.Substring(pivote += 50, 50);
+            String estadisticos6 = text2.Substring(pivote += 50, 50);
+            String estadisticos7 = text2.Substring(pivote += 50, 50);
+
+            
+
+            String recargos1 = text2.Substring(pivote += 50, 50);
+            String recargos2 = text2.Substring(pivote += 50, 50);
+            String recargos3 = text2.Substring(pivote += 50, 50);
+            String recargos4 = text2.Substring(pivote += 50, 50);
+            String recargos5 = text2.Substring(pivote += 50, 50);
+            String recargos6 = text2.Substring(pivote += 50, 50);
+            String recargos7 = text2.Substring(pivote += 50, 50);
+            String recargos8 = text2.Substring(pivote += 50, 50);
+            String recargos9 = text2.Substring(pivote += 50, 50);
+            String recargos10 = text2.Substring(pivote += 50, 50);
+            String recargos11 = text2.Substring(pivote += 50, 50);
+
+            String promedio = text2.Substring(pivote += 50, 8); ///CONVERTIRLO A ENTERO Y DESPUES A STRING
+
+            String cod1 = text2.Substring(pivote += 8, 28);
+            
+
+
+
+
+            String totControl = text2.Substring(pivote += 50, 8);
+            if (totControl == "00000000") totControl = "0";
+            String totControl2 = text2.Substring(pivote += 8, 8);
+            if (totControl2 == "00000000") totControl2 = "0";
+            //saco los ceros de la parte entera del importe
+            String totImporteEntero = text2.Substring(pivote += 8, 10);
+            int parteEntera = Int32.Parse(totImporteEntero);
+            totImporteEntero = parteEntera.ToString();
+            String totImporteDecimal = text2.Substring(pivote += 10, 2);
+            // y guardo todo el importe entero
+            String totImporte = totImporteEntero + "." + totImporteDecimal;
+
+            //////////////////DATOS PARA QR1///////////////////
+            String qr1 = "";
+            qr1 += "000201";//Formato
+            qr1 += "010212";//Metodo de inicio
+            qr1 += "40230010com.yacare0105Y1103";//Datos Yacare
+            qr1 += "5015001130545748831";//Cuil Empresa
+            qr1 += "52044900"; //Codigo comercio
+            qr1 += "5303032"; //Moneda de la TX
+            String importe = Int32.Parse(cod1.Substring(18, 7)).ToString();
+            String dec = cod1.Substring(25, 2);
+            String cant = importe.Length.ToString();
+            qr1 += "540" + cant + importe +  "." + dec; //Importe
+            qr1 += "5802AR"; //Codigo de pais
+            qr1 += "5925COOPERATIVAELECTRICACOLON"; //Nombre de empresa
+            qr1 += "6005Colon"; //Ciudad empresa
+            qr1 += "61043280"; //Codigo postal
+            String idCliente = cod1.Substring(4, 7);
+            qr1 += "62230108" + totControl + "0607" + idCliente; //Datos cliente
+            qr1 += "6304"; //digitos de mierda de verificacion de Yacaré
+
+            String crc = CalculaCRC(qr1, Encoding.UTF8);
+            //QR1 ES EL STRING DEL QR1 JEJE
+            qr1 += crc;
+            ///////////////////////////////////////////////////
 
             // Draw image
             gfx.DrawImage(img, 0, 0);
