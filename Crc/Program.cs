@@ -34,6 +34,7 @@ namespace Crc
 
             //XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
             XFont fontCourier8 = new XFont("Courier", 8, XFontStyle.Regular);
+            XFont fontCourier7 = new XFont("Courier", 7, XFontStyle.Regular);
 
 
             String nis = text2.Substring(0, pivote);
@@ -217,6 +218,8 @@ namespace Crc
             gfx.DrawString(domiReal, fontCourierBold15, XBrushes.Black, 25, 105);
             gfx.DrawString(postal, fontCourierBold15, XBrushes.Black, 25, 118);
             gfx.DrawString(localidad, fontCourierBold15, XBrushes.Black, 25, 131);
+            gfx.DrawString(condiva, fontCourier7, XBrushes.Black, 25, 142);
+            gfx.DrawString(cuit, fontCourier7, XBrushes.Black, 155, 142);
             // gfx.DrawMatrixCode()
 
 
