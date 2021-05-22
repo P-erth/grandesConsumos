@@ -204,7 +204,7 @@ namespace Crc
             qr1 += "5303032"; //Moneda de la TX
             String importe = Int32.Parse(cod1.Substring(18, 7)).ToString();
             String dec = cod1.Substring(25, 2);
-            String cant = importe.Length.ToString();
+            String cant = (importe.Length + 3).ToString() ;
             qr1 += "540" + cant + importe +  "." + dec; //Importe
             qr1 += "5802AR"; //Codigo de pais
             qr1 += "5925COOPERATIVAELECTRICACOLON"; //Nombre de empresa
@@ -228,29 +228,29 @@ namespace Crc
                 Format = ZXing.BarcodeFormat.QR_CODE,
                 Options = new ZXing.Common.EncodingOptions
                 {
-                    Height = 300,
-                    Width = 300,
+                    Height = 100,
+                    Width = 100,
                     Margin = 0
                 },
             };
 
-            Bitmap bm = new Bitmap(bcWriter.Write(qr1), 300, 300);
+            Bitmap bm = new Bitmap(bcWriter.Write(qr1), 100, 100);
             XImage img2 = XImage.FromGdiPlusImage((Image)bm);
             img2.Interpolate = false;
-            gfx.DrawImage(img2, 0, 0);
+            gfx.DrawImage(img2, 490, 330);
 
             // Draw the text
-            XFont fontCourierBold15 = new XFont("Courier-Bold", 15);
-            XFont fontCourierBold12 = new XFont("Courier-Bold", 12, XFontStyle.Bold);
+            XFont fontCourierBold20 = new XFont("Courier New", 20,XFontStyle.Bold);
+            XFont fontCourierBold15 = new XFont("Courier New", 15, XFontStyle.Bold);
             //gfx.DrawString("Hello, World!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height),XStringFormats.Center);
 
 
 
-            gfx.DrawString("NIS:  " + (long.Parse(nis)).ToString(), fontCourierBold15, XBrushes.Black, 400, 90);
-            gfx.DrawString(nombre, fontCourierBold12, XBrushes.Black, 10, 40);
-            gfx.DrawString(domiReal, fontCourierBold12, XBrushes.Black, 10, 50);
-            gfx.DrawString(postal, fontCourierBold12, XBrushes.Black, 10, 60);
-            gfx.DrawString(localidad, fontCourierBold12, XBrushes.Black, 10, 70);
+            gfx.DrawString("NIS:  " + (long.Parse(nis)).ToString(), fontCourierBold20, XBrushes.Black, 400, 90);
+            gfx.DrawString(nombre, fontCourierBold15, XBrushes.Black, 10, 40);
+            gfx.DrawString(domiReal, fontCourierBold15, XBrushes.Black, 10, 50);
+            gfx.DrawString(postal, fontCourierBold15, XBrushes.Black, 10, 60);
+            gfx.DrawString(localidad, fontCourierBold15, XBrushes.Black, 10, 70);
             // gfx.DrawMatrixCode()
 
             
