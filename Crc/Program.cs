@@ -59,17 +59,40 @@ namespace Crc
             String cuHora = text2.Substring(pivote += 4, 2) + ":" + text2.Substring(pivote += 2, 2);
             String vto = text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 4);
 
-
             String proximoMes = text2.Substring(pivote += 4, 2);
+            String proxAño = text2.Substring(pivote += 2, 4);
             if (proximoMes == "12")
             {
                 proximoMes = "01";
-                String proxAño = text2.Substring(pivote += 2, 4);
+                int año = Int32.Parse(proxAño);
+                año++;
+                proxAño = año.ToString();
             }
             else
             {
-                proximoMes = proximoMes;
+                int mes = Int32.Parse(proximoMes);
+                mes++;
+                proximoMes = mes.ToString();
             }
+            String proxVto = text2.Substring(pivote += 4, 2) + "/" + text2.Substring(pivote+= 2, 2) + "/" + text2.Substring(pivote += 2, 4);
+            String lsp = text2.Substring(pivote += 4, 1) + "-" + text2.Substring(pivote += 1, 4) + "-" + text2.Substring(pivote += 4, 8);
+            String lsp2 = text2.Substring(pivote += 8, 1) + "-" + text2.Substring(pivote += 1, 4) + "-" + text2.Substring(pivote += 4, 8);
+            String codCom = text2.Substring(pivote += 8, 2);
+            String cesp = text2.Substring(pivote += 2, 14);
+            String cespEmis = text2.Substring(pivote += 14, 2) + "/" + text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 4);
+            String cespVto = text2.Substring(pivote += 4, 2) + "/" + text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 4);
+            String lspTarifa = text2.Substring(pivote += 4, 6);
+            String lspSocial = text2.Substring(pivote += 6, 1);
+            String lspMedidor = text2.Substring(pivote += 1, 10);
+            String lspEstadoAnt = text2.Substring(pivote += 10, 10);
+            String lspEstadoAnFec = text2.Substring(pivote += 10, 2) + "/" + text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 4);
+            String lspEstadoAc = text2.Substring(pivote += 4, 10);
+            String lspEstadoAcFec = text2.Substring(pivote += 4, 10) + "/" + text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 4);
+            String lspFactor = text2.Substring(pivote += 4, 4);
+            String lspConsumo = text2.Substring(pivote += 4, 8);
+            String lspSecuencia = text2.Substring(pivote += 8, 10);
+            String cuerpoA1 = text2.Substring(pivote += 10, 85);
+
 
             // Draw image
             gfx.DrawImage(img, 0, 0);
@@ -83,13 +106,13 @@ namespace Crc
             gfx.DrawString(localidad, font, XBrushes.Black, 0, 70);
             // gfx.DrawMatrixCode()
 
-
+            
             // Save the document...
             //document.CustomValues.CompressionMode = PdfCustomValueCompressionMode.Compressed;
             document.Options.FlateEncodeMode = PdfFlateEncodeMode.BestCompression;
             const string filename = "HelloWorld.pdf";
             document.Save(filename);
-            //System.Diagnostics.Process.Start(filename);
+            System.Diagnostics.Process.Start(filename);
 
             //
             var path = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "foo.txt");
