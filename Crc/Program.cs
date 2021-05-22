@@ -247,10 +247,10 @@ namespace Crc
 
 
             gfx.DrawString("NIS:  " + (long.Parse(nis)).ToString(), fontCourierBold20, XBrushes.Black, 400, 90);
-            gfx.DrawString(nombre, fontCourierBold15, XBrushes.Black, 10, 40);
-            gfx.DrawString(domiReal, fontCourierBold15, XBrushes.Black, 10, 50);
-            gfx.DrawString(postal, fontCourierBold15, XBrushes.Black, 10, 60);
-            gfx.DrawString(localidad, fontCourierBold15, XBrushes.Black, 10, 70);
+            gfx.DrawString(nombre, fontCourierBold15, XBrushes.Black, 25, 92);
+            gfx.DrawString(domiReal, fontCourierBold15, XBrushes.Black, 25, 105);
+            gfx.DrawString(postal, fontCourierBold15, XBrushes.Black, 25, 118);
+            gfx.DrawString(localidad, fontCourierBold15, XBrushes.Black, 25, 131);
             // gfx.DrawMatrixCode()
 
             
