@@ -41,11 +41,11 @@ namespace Crc
             String domiReal = text2.Substring(pivote += 30, 30);
             String postal = text2.Substring(pivote += 30, 30);
             String localidad = text2.Substring(pivote += 30, 30);
-            String socio = text2.Substring(pivote += 30, 7);
-            String socioDesde = text2.Substring(pivote += 7, 8);
+            String socio = text2.Substring(pivote += 30, 8);
+            String socioDesde = text2.Substring(pivote += 8, 8);
             String socioActa = text2.Substring(pivote += 8, 8);
-            String socioTipo = text2.Substring(pivote += 8, 8);
-            String socioDoc = text2.Substring(pivote += 8, 11);
+            String socioTipo = text2.Substring(pivote += 8, 3);
+            String socioDoc = text2.Substring(pivote += 3, 11);
             String inf1 = text2.Substring(pivote += 11, 52);
             String inf2 = text2.Substring(pivote += 52, 52);
             String inf3 = text2.Substring(pivote += 52, 52);
@@ -57,26 +57,32 @@ namespace Crc
             String cbu = text2.Substring(pivote += 20, 22);
             String cuFecha = text2.Substring(pivote += 22, 2) + "/" + text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 4);
             String cuHora = text2.Substring(pivote += 4, 2) + ":" + text2.Substring(pivote += 2, 2);
-            String vto = text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 4);
 
-            String proximoMes = text2.Substring(pivote += 4, 2);
-            String proxAño = text2.Substring(pivote += 2, 4);
-            if (proximoMes == "12")
+            String diaVto = text2.Substring(pivote += 2, 2);
+            String mesVto = text2.Substring(pivote += 2, 2);
+            String añoVto = text2.Substring(pivote += 2, 4);
+
+          
+            
+            if (mesVto == "12")
             {
-                proximoMes = "01";
-                int año = Int32.Parse(proxAño);
-                año++;
-                proxAño = año.ToString();
+                mesVto = "01";
+                int año = Int32.Parse(añoVto);
+                añoVto = año.ToString();
             }
             else
             {
-                int mes = Int32.Parse(proximoMes);
+                int mes = Int32.Parse(mesVto);
                 mes++;
-                proximoMes = mes.ToString();
+                mesVto = mes.ToString();
             }
-            String proxVto = text2.Substring(pivote += 4, 2) + "/" + text2.Substring(pivote+= 2, 2) + "/" + text2.Substring(pivote += 2, 4);
-            String lsp = text2.Substring(pivote += 4, 1) + "-" + text2.Substring(pivote += 1, 4) + "-" + text2.Substring(pivote += 4, 8);
-            String lsp2 = text2.Substring(pivote += 8, 1) + "-" + text2.Substring(pivote += 1, 4) + "-" + text2.Substring(pivote += 4, 8);
+            String proxVto = diaVto + "/" + mesVto + "/" + añoVto;
+            String lspParte1 = text2.Substring(pivote += 4, 1);
+            String lspParte2 = text2.Substring(pivote += 1, 4);
+             
+            String lsp = lspParte1 + "-" + lspParte2 + "-" + text2.Substring(pivote += 4, 8);
+
+            //String lsp2 = text2.Substring(pivote += 8, 1) + "-" + text2.Substring(pivote += 1, 4) + "-" + text2.Substring(pivote += 4, 8);
             String codCom = text2.Substring(pivote += 8, 2);
             String cesp = text2.Substring(pivote += 2, 14);
             String cespEmis = text2.Substring(pivote += 14, 2) + "/" + text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 4);
@@ -87,7 +93,7 @@ namespace Crc
             String lspEstadoAnt = text2.Substring(pivote += 10, 10);
             String lspEstadoAnFec = text2.Substring(pivote += 10, 2) + "/" + text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 4);
             String lspEstadoAc = text2.Substring(pivote += 4, 10);
-            String lspEstadoAcFec = text2.Substring(pivote += 4, 10) + "/" + text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 4);
+            String lspEstadoAcFec = text2.Substring(pivote += 10, 2) + "/" + text2.Substring(pivote += 2, 2) + "/" + text2.Substring(pivote += 2, 4);
             String lspFactor = text2.Substring(pivote += 4, 4);
             String lspConsumo = text2.Substring(pivote += 4, 8);
             String lspSecuencia = text2.Substring(pivote += 8, 10);
@@ -131,9 +137,19 @@ namespace Crc
             String cuerpoA38 = text2.Substring(pivote += 85, 85);
             String cuerpoA39 = text2.Substring(pivote += 85, 85);
             String cuerpoA40 = text2.Substring(pivote += 85, 85);
-            String deudasA1A = text2.Substring(pivote += 85, 50);
-            String deudasA1B = text2.Substring(pivote += 50, 50);
-            String deudasA1C = text2.Substring(pivote += 50, 50);
+
+            String deudasA1 = text2.Substring(pivote += 85, 50);
+            String deudasA2 = text2.Substring(pivote += 50, 50);
+            String deudasA3 = text2.Substring(pivote += 50, 50);
+            String deudasA4 = text2.Substring(pivote += 50, 50);
+            String deudasA5 = text2.Substring(pivote += 50, 50);
+            String deudasA6 = text2.Substring(pivote += 50, 50);
+            String deudasA7 = text2.Substring(pivote += 50, 50);
+            String deudasA8 = text2.Substring(pivote += 50, 50);
+            String deudasA9 = text2.Substring(pivote += 50, 50);
+            String deudasA10 = text2.Substring(pivote += 50, 50);
+            String deudasA11 = text2.Substring(pivote += 50, 50);
+            String deudasA12 = text2.Substring(pivote += 50, 50);
 
             String estadisticos1 = text2.Substring(pivote += 50, 50);
             String estadisticos2 = text2.Substring(pivote += 50, 50);
@@ -142,8 +158,6 @@ namespace Crc
             String estadisticos5 = text2.Substring(pivote += 50, 50);
             String estadisticos6 = text2.Substring(pivote += 50, 50);
             String estadisticos7 = text2.Substring(pivote += 50, 50);
-
-            
 
             String recargos1 = text2.Substring(pivote += 50, 50);
             String recargos2 = text2.Substring(pivote += 50, 50);
@@ -159,19 +173,20 @@ namespace Crc
 
             String promedio = text2.Substring(pivote += 50, 8); ///CONVERTIRLO A ENTERO Y DESPUES A STRING
 
-            String cod1 = text2.Substring(pivote += 8, 28);
-            
 
-
-
-
-            String totControl = text2.Substring(pivote += 50, 8);
+            String totControl = text2.Substring(pivote += 8, 8);
             if (totControl == "00000000") totControl = "0";
-            String totControl2 = text2.Substring(pivote += 8, 8);
-            if (totControl2 == "00000000") totControl2 = "0";
+
+            String cod1 = text2.Substring(pivote += 8, 28);
+
+
+            //String totControl2 = text2.Substring(pivote += 8, 8);
+            //if (totControl2 == "00000000") totControl2 = "0";
+            
+            
             //saco los ceros de la parte entera del importe
             String totImporteEntero = text2.Substring(pivote += 8, 10);
-            int parteEntera = Int32.Parse(totImporteEntero);
+            long parteEntera = long.Parse(totImporteEntero);
             totImporteEntero = parteEntera.ToString();
             String totImporteDecimal = text2.Substring(pivote += 10, 2);
             // y guardo todo el importe entero
