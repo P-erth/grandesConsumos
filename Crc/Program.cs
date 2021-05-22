@@ -6,6 +6,7 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using System.Drawing;
+using ZXing;
 
 namespace Crc
 {
@@ -219,6 +220,16 @@ namespace Crc
 
             // Draw image
             gfx.DrawImage(img, 0, 0);
+
+            //Draw the QR
+            BarcodeWriter bcWriter = new BarcodeWriter();
+            bcWriter.Format = BarcodeFormat.QR_CODE;
+            Bitmap bm = new Bitmap(bcWriter.Write(qr1), 150, 150);
+            bm.Save("asdasd.jpg");
+            XImage img2 = XImage.FromGdiPlusImage((Image)bm);
+            img2.Interpolate = false;
+            gfx.DrawImage(img2, 0, 0);
+
             // Draw the text
 
             //gfx.DrawString("Hello, World!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height),XStringFormats.Center);
