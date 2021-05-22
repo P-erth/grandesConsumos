@@ -99,47 +99,13 @@ namespace Crc
             String lspFactor = text2.Substring(pivote += 4, 4);
             String lspConsumo = text2.Substring(pivote += 4, 8);
             String lspSecuencia = text2.Substring(pivote += 8, 10);
-            String cuerpoA1 = text2.Substring(pivote += 10, 85);
-            String cuerpoA2 = text2.Substring(pivote += 85, 85);
-            String cuerpoA3 = text2.Substring(pivote += 85, 85);
-            String cuerpoA4 = text2.Substring(pivote += 85, 85);
-            String cuerpoA5 = text2.Substring(pivote += 85, 85);
-            String cuerpoA6 = text2.Substring(pivote += 85, 85);
-            String cuerpoA7 = text2.Substring(pivote += 85, 85);
-            String cuerpoA8 = text2.Substring(pivote += 85, 85);
-            String cuerpoA9 = text2.Substring(pivote += 85, 85);
-            String cuerpoA10 = text2.Substring(pivote += 85, 85);
-            String cuerpoA11 = text2.Substring(pivote += 85, 85);
-            String cuerpoA12 = text2.Substring(pivote += 85, 85);
-            String cuerpoA13 = text2.Substring(pivote += 85, 85);
-            String cuerpoA14 = text2.Substring(pivote += 85, 85);
-            String cuerpoA15 = text2.Substring(pivote += 85, 85);
-            String cuerpoA16 = text2.Substring(pivote += 85, 85);
-            String cuerpoA17 = text2.Substring(pivote += 85, 85);
-            String cuerpoA18 = text2.Substring(pivote += 85, 85);
-            String cuerpoA19 = text2.Substring(pivote += 85, 85);
-            String cuerpoA20 = text2.Substring(pivote += 85, 85);
-            String cuerpoA21 = text2.Substring(pivote += 85, 85);
-            String cuerpoA22 = text2.Substring(pivote += 85, 85);
-            String cuerpoA23 = text2.Substring(pivote += 85, 85);
-            String cuerpoA24 = text2.Substring(pivote += 85, 85);
-            String cuerpoA25 = text2.Substring(pivote += 85, 85);
-            String cuerpoA26 = text2.Substring(pivote += 85, 85);
-            String cuerpoA27 = text2.Substring(pivote += 85, 85);
-            String cuerpoA28 = text2.Substring(pivote += 85, 85);
-            String cuerpoA29 = text2.Substring(pivote += 85, 85);
-            String cuerpoA30 = text2.Substring(pivote += 85, 85);
-            String cuerpoA31 = text2.Substring(pivote += 85, 85);
-            String cuerpoA32 = text2.Substring(pivote += 85, 85);
-            String cuerpoA33 = text2.Substring(pivote += 85, 85);
-            String cuerpoA34 = text2.Substring(pivote += 85, 85);
-            String cuerpoA35 = text2.Substring(pivote += 85, 85);
-            String cuerpoA36 = text2.Substring(pivote += 85, 85);
-            String cuerpoA37 = text2.Substring(pivote += 85, 85);
-            String cuerpoA38 = text2.Substring(pivote += 85, 85);
-            String cuerpoA39 = text2.Substring(pivote += 85, 85);
-            String cuerpoA40 = text2.Substring(pivote += 85, 85);
-
+            List<string> cuerpos = new List<string>();
+            cuerpos.Add(text2.Substring(pivote += 10, 85));
+            for (int i = 0; i < 39; i++)
+            {
+                cuerpos.Add(text2.Substring(pivote += 85, 85));
+                // Console.WriteLine(i);
+            }
             String deudasA1 = text2.Substring(pivote += 85, 50);
             String deudasA2 = text2.Substring(pivote += 50, 50);
             String deudasA3 = text2.Substring(pivote += 50, 50);
@@ -253,7 +219,13 @@ namespace Crc
             gfx.DrawString(localidad, fontCourierBold15, XBrushes.Black, 25, 131);
             // gfx.DrawMatrixCode()
 
-            
+            XFont fontCourier7 = new XFont("Courier New", 7, XFontStyle.Regular);
+            int posy = 185;
+            foreach (string cuerpo in cuerpos)
+            {
+                gfx.DrawString(cuerpo, fontCourier7, XBrushes.Black, 243, posy += 7);
+            }
+
             // Save the document...
             //document.CustomValues.CompressionMode = PdfCustomValueCompressionMode.Compressed;
             document.Options.FlateEncodeMode = PdfFlateEncodeMode.BestCompression;
