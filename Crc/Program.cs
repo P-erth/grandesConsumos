@@ -100,47 +100,20 @@ namespace Crc
             String lspFactor = text2.Substring(pivote += 4, 4);
             String lspConsumo = text2.Substring(pivote += 4, 8);
             String lspSecuencia = text2.Substring(pivote += 8, 10);
-            List<string> cuerpos = new List<string>();
+
+            List<string> cuerpos = new List<string>();//Tabla Cuerpo
             cuerpos.Add(text2.Substring(pivote += 10, 85));
-            for (int i = 0; i < 39; i++)
-            {
-                cuerpos.Add(text2.Substring(pivote += 85, 85));
-                // Console.WriteLine(i);
-            }
-            String deudasA1 = text2.Substring(pivote += 85, 50);
-            String deudasA2 = text2.Substring(pivote += 50, 50);
-            String deudasA3 = text2.Substring(pivote += 50, 50);
-            String deudasA4 = text2.Substring(pivote += 50, 50);
-            String deudasA5 = text2.Substring(pivote += 50, 50);
-            String deudasA6 = text2.Substring(pivote += 50, 50);
-            String deudasA7 = text2.Substring(pivote += 50, 50);
-            String deudasA8 = text2.Substring(pivote += 50, 50);
-            String deudasA9 = text2.Substring(pivote += 50, 50);
-            String deudasA10 = text2.Substring(pivote += 50, 50);
-            String deudasA11 = text2.Substring(pivote += 50, 50);
-            String deudasA12 = text2.Substring(pivote += 50, 50);
+            for (int i = 0; i < 39; i++) cuerpos.Add(text2.Substring(pivote += 85, 85));
+            List<string> deudas = new List<string>();//Tabla Deuda
+            deudas.Add(text2.Substring(pivote += 85, 50));
+            for (int i = 0; i < 11; i++) deudas.Add("aaaaaaaaaaeeeeeeeeeeaaaaaaaaaaeeeeeeeeeedddddddddd" + (pivote+=50).ToString());//deudas.Add(text2.Substring(pivote += 50, 50));
+            List<string> estadisticos = new List<string>();//Tabla estadisticos
+            for (int i = 0; i < 7; i++) estadisticos.Add(text2.Substring(pivote += 50, 50));
+            List<string> recargos = new List<string>();//Tabla recargos
+            for (int i = 0; i < 11; i++) recargos.Add("aaaaaaaaaaeeeeeeeeeeaaaaaaaaaaeeeeeeeeeedddddddddd" + (pivote+=50).ToString()); //recargos.Add(text2.Substring(pivote += 50, 50));
 
-            String estadisticos1 = text2.Substring(pivote += 50, 50);
-            String estadisticos2 = text2.Substring(pivote += 50, 50);
-            String estadisticos3 = text2.Substring(pivote += 50, 50);
-            String estadisticos4 = text2.Substring(pivote += 50, 50);
-            String estadisticos5 = text2.Substring(pivote += 50, 50);
-            String estadisticos6 = text2.Substring(pivote += 50, 50);
-            String estadisticos7 = text2.Substring(pivote += 50, 50);
-
-            String recargos1 = text2.Substring(pivote += 50, 50);
-            String recargos2 = text2.Substring(pivote += 50, 50);
-            String recargos3 = text2.Substring(pivote += 50, 50);
-            String recargos4 = text2.Substring(pivote += 50, 50);
-            String recargos5 = text2.Substring(pivote += 50, 50);
-            String recargos6 = text2.Substring(pivote += 50, 50);
-            String recargos7 = text2.Substring(pivote += 50, 50);
-            String recargos8 = text2.Substring(pivote += 50, 50);
-            String recargos9 = text2.Substring(pivote += 50, 50);
-            String recargos10 = text2.Substring(pivote += 50, 50);
-            String recargos11 = text2.Substring(pivote += 50, 50);
-
-            String promedio = text2.Substring(pivote += 50, 8); ///CONVERTIRLO A ENTERO Y DESPUES A STRING
+            Console.WriteLine(recargos);
+            String promedio = long.Parse(text2.Substring(pivote += 50, 8)).ToString(); ///CONVERTIRLO A ENTERO Y DESPUES A STRING
 
 
             String totControl = text2.Substring(pivote += 8, 8);
@@ -209,11 +182,12 @@ namespace Crc
             // Draw the text
             XFont fontCourierBold20 = new XFont("Courier New", 20,XFontStyle.Bold);
             XFont fontCourierBold15 = new XFont("Courier New", 15, XFontStyle.Bold);
+            XFont fontCourierBold7 = new XFont("Courier New", 7, XFontStyle.Bold);
             //gfx.DrawString("Hello, World!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height),XStringFormats.Center);
 
 
 
-            gfx.DrawString("NIS:  " + (long.Parse(nis)).ToString(), fontCourierBold20, XBrushes.Black, 400, 90);
+            gfx.DrawString("NIS:  " + (long.Parse(nis)).ToString(), fontCourierBold15, XBrushes.Black, 410, 90);
             gfx.DrawString(nombre, fontCourierBold15, XBrushes.Black, 25, 92);
             gfx.DrawString(domiReal, fontCourierBold15, XBrushes.Black, 25, 105);
             gfx.DrawString(postal, fontCourierBold15, XBrushes.Black, 25, 118);
@@ -223,13 +197,47 @@ namespace Crc
             // gfx.DrawMatrixCode()
 
 
-            XFont fontCourier7 = new XFont("Courier New", 7, XFontStyle.Regular);
-            int posy = 185;
-            foreach (string cuerpo in cuerpos)
-            {
-                gfx.DrawString(cuerpo, fontCourier7, XBrushes.Black, 243, posy += 7);
-            }
 
+            fontCourier7 = new XFont("Courier New", 7, XFontStyle.Regular);
+            int posy = 185;
+            foreach (string cuerpo in cuerpos) gfx.DrawString(cuerpo, fontCourier7, XBrushes.Black, 243, posy += 7);
+            posy = 176;
+            XFont fontCourier6 = new XFont("Courier New", 6, XFontStyle.Regular);
+            foreach (string deuda in deudas) gfx.DrawString(deuda, fontCourier6, XBrushes.Black, 43, posy += 7);
+            posy = 255;
+            foreach (string estadistico in estadisticos) gfx.DrawString(estadistico, fontCourier6, XBrushes.Black, 43, posy += 7);
+            gfx.DrawString("Promedio : " + promedio, fontCourier6, XBrushes.Black, 105, posy += 7);
+            posy = 326;
+            foreach (string recargo in recargos) gfx.DrawString(recargo, fontCourier6, XBrushes.Black, 30, posy += 7);
+
+            posy = 22;
+            gfx.DrawString("Liq. Serv. Públicos", fontCourierBold7, XBrushes.Black, 400, posy);
+            gfx.DrawString(lsp, fontCourierBold7, XBrushes.Black, 500, posy);
+            gfx.DrawString("Código Comprobante", fontCourierBold7, XBrushes.Black, 400, posy+=10);
+            gfx.DrawString(codCom, fontCourierBold7, XBrushes.Black, 555, posy);
+            gfx.DrawString("C.E.S.P. Número", fontCourierBold7, XBrushes.Black, 400, posy += 10);
+            gfx.DrawString(cesp, fontCourierBold7, XBrushes.Black, 505, posy);
+            gfx.DrawString("Vencimiento CESP", fontCourierBold7, XBrushes.Black, 400, posy+=10);
+            gfx.DrawString(cespVto, fontCourierBold7, XBrushes.Black, 522, posy);
+            gfx.DrawString("Control de pago", fontCourierBold7, XBrushes.Black, 400, posy+=10);
+            gfx.DrawString(totControl, fontCourierBold7, XBrushes.Black, 530, posy);
+            gfx.DrawString("Fecha emisión", fontCourierBold7, XBrushes.Black, 400, posy+=10);
+            gfx.DrawString(cespEmis, fontCourierBold7, XBrushes.Black, 522, posy);
+
+            posy = 102;
+            gfx.DrawString("Medidor Nro.", fontCourierBold7, XBrushes.Black, 275, posy);
+            gfx.DrawString(lspMedidor, fontCourierBold7, XBrushes.Black, 352, posy);
+            gfx.DrawString("Estado Anter.", fontCourierBold7, XBrushes.Black, 400, posy);
+            gfx.DrawString((long.Parse(lspEstadoAnt)).ToString(), fontCourierBold7, XBrushes.Black, 470, posy);
+            gfx.DrawString(lspEstadoAnFec, fontCourierBold7, XBrushes.Black, 505, posy);
+            gfx.DrawString("Socio", fontCourierBold7, XBrushes.Black, 275, posy+=7);
+            gfx.DrawString(socio, fontCourierBold7, XBrushes.Black, 360, posy);
+
+            gfx.DrawString("Tarifa", fontCourierBold7, XBrushes.Black, 275, posy+=7);
+            gfx.DrawString(lspTarifa, fontCourierBold7, XBrushes.Black, 368, posy);
+            gfx.DrawString("Pxmo. vto. desde", fontCourierBold7, XBrushes.Black, 275, posy+=14);
+            gfx.DrawString(proxVto, fontCourierBold7, XBrushes.Black, 356, posy);
+            
             // Save the document...
             //document.CustomValues.CompressionMode = PdfCustomValueCompressionMode.Compressed;
             document.Options.FlateEncodeMode = PdfFlateEncodeMode.BestCompression;
