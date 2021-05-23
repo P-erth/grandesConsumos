@@ -3,6 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+Crc/Output/Historico/
 Crc/Output/Crc.exe
 Crc/Output/HelloWorld.pdf
 
