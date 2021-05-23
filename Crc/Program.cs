@@ -30,7 +30,7 @@ namespace Crc
             }
 
 
-            for (int p = 0; p < 1; p++)
+            for (int p = 0; p < pagina; p++)
             {
 
                 PdfDocument document = new PdfDocument();
