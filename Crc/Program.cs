@@ -25,10 +25,12 @@ namespace Crc
 
             // Create a new PDF document
             PdfDocument document = new PdfDocument();
+            
             document.Info.Title = "Created with PDFsharp";
 
             // Create an empty page
             PdfPage page = document.AddPage();
+            page.Size = PdfSharp.PageSize.A4;
             // Get an XGraphics object for drawing
             XGraphics gfx = XGraphics.FromPdfPage(page);
 
@@ -49,12 +51,11 @@ namespace Crc
             String socioActa = text2.Substring(pivote += 8, 8);
             String socioTipo = text2.Substring(pivote += 8, 3);
             String socioDoc = text2.Substring(pivote += 3, 11);
-            String inf1 = text2.Substring(pivote += 11, 52);
-            String inf2 = text2.Substring(pivote += 52, 52);
-            String inf3 = text2.Substring(pivote += 52, 52);
-            String inf4 = text2.Substring(pivote += 52, 52);
-            String inf5 = text2.Substring(pivote += 52, 52);
-            String inf6 = text2.Substring(pivote += 52, 52);
+
+            List<string> informaciones = new List<string>();//Tabla Inf
+            informaciones.Add(text2.Substring(pivote += 11, 52));
+            for (int i = 0; i < 5; i++) informaciones.Add(text2.Substring(pivote += 52, 52));  
+
             String cuit = text2.Substring(pivote += 52, 11);
             String condiva = text2.Substring(pivote += 11, 20);
             String cbu = text2.Substring(pivote += 20, 22);
@@ -65,7 +66,6 @@ namespace Crc
             String mesVto = text2.Substring(pivote += 2, 2);
             String añoVto = text2.Substring(pivote += 2, 4);
 
-          
             
             if (mesVto == "12")
             {
@@ -106,11 +106,11 @@ namespace Crc
             for (int i = 0; i < 39; i++) cuerpos.Add(text2.Substring(pivote += 85, 85));
             List<string> deudas = new List<string>();//Tabla Deuda
             deudas.Add(text2.Substring(pivote += 85, 50));
-            for (int i = 0; i < 11; i++) deudas.Add("aaaaaaaaaaeeeeeeeeeeaaaaaaaaaaeeeeeeeeeedddddddddd" + (pivote+=50).ToString());//deudas.Add(text2.Substring(pivote += 50, 50));
+            for (int i = 0; i < 11; i++) deudas.Add(text2.Substring(pivote += 50, 50));
             List<string> estadisticos = new List<string>();//Tabla estadisticos
             for (int i = 0; i < 7; i++) estadisticos.Add(text2.Substring(pivote += 50, 50));
             List<string> recargos = new List<string>();//Tabla recargos
-            for (int i = 0; i < 11; i++) recargos.Add("aaaaaaaaaaeeeeeeeeeeaaaaaaaaaaeeeeeeeeeedddddddddd" + (pivote+=50).ToString()); //recargos.Add(text2.Substring(pivote += 50, 50));
+            for (int i = 0; i < 11; i++) recargos.Add(text2.Substring(pivote += 50, 50));
 
             Console.WriteLine(recargos);
             String promedio = long.Parse(text2.Substring(pivote += 50, 8)).ToString(); ///CONVERTIRLO A ENTERO Y DESPUES A STRING
@@ -119,20 +119,28 @@ namespace Crc
             String totControl = text2.Substring(pivote += 8, 8);
             if (totControl == "00000000") totControl = "0";
 
-            String cod1 = text2.Substring(pivote += 8, 28);
-
-
-            //String totControl2 = text2.Substring(pivote += 8, 8);
-            //if (totControl2 == "00000000") totControl2 = "0";
-            
-            
             //saco los ceros de la parte entera del importe
             String totImporteEntero = text2.Substring(pivote += 8, 10);
             long parteEntera = long.Parse(totImporteEntero);
             totImporteEntero = parteEntera.ToString();
             String totImporteDecimal = text2.Substring(pivote += 10, 2);
             // y guardo todo el importe entero
+            String cod1 = text2.Substring(pivote += 2, 28);
+
+            String lsp2 = lspParte1 + "-" + lspParte2 + "-" + text2.Substring(pivote += 28, 8);
+            List<string> cuerposTabla2 = new List<string>();
+            cuerposTabla2.Add(text2.Substring(pivote += 8, 85 ));
+            for (int i = 0; i < 24; i++) cuerposTabla2.Add(text2.Substring(pivote += 85, 85));
+            List<string> recargosTabla2 = new List<string>();
+            recargosTabla2.Add(text2.Substring(pivote += 85, 50));
+            for (int i = 0; i < 11; i++) recargosTabla2.Add(text2.Substring(pivote += 50, 50));
+            List<string> sepelios = new List<string>();
+            for (int i = 0; i < 12; i++) sepelios.Add(text2.Substring(pivote += 50, 50));
+            String totControl2 = text2.Substring(pivote += 50, 8);
+            if (totControl2 == "00000000") totControl2 = "0";
+            String totImporte2 = long.Parse(text2.Substring(pivote += 8, 10)).ToString() + "." + text2.Substring(pivote += 10, 2);
             String totImporte = totImporteEntero + "." + totImporteDecimal;
+            String cod2 = text2.Substring(pivote += 2, 28);
 
             //////////////////DATOS PARA QR1///////////////////
             String qr1 = "";
@@ -183,6 +191,7 @@ namespace Crc
             XFont fontCourierBold20 = new XFont("Courier New", 20,XFontStyle.Bold);
             XFont fontCourierBold15 = new XFont("Courier New", 15, XFontStyle.Bold);
             XFont fontCourierBold14 = new XFont("Courier New", 14, XFontStyle.Bold);
+            XFont fontCourierBold13 = new XFont("Courier New", 13, XFontStyle.Bold);
             XFont fontCourierBold7 = new XFont("Courier New", 7, XFontStyle.Bold);
             //gfx.DrawString("Hello, World!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height),XStringFormats.Center);
 
@@ -193,8 +202,8 @@ namespace Crc
             gfx.DrawString(domiReal, fontCourierBold14, XBrushes.Black, 25, 105);
             gfx.DrawString(postal, fontCourierBold14, XBrushes.Black, 25, 118);
             gfx.DrawString(localidad, fontCourierBold14, XBrushes.Black, 25, 131);
-            gfx.DrawString("Cond.Iva:" + condiva, fontCourier7, XBrushes.Black, 25, 142);
-            gfx.DrawString("CUIT: " + cuit, fontCourier7, XBrushes.Black, 155, 142);
+            gfx.DrawString("Cond.Iva:" + condiva, fontCourierBold7, XBrushes.Black, 25, 142);
+            gfx.DrawString("CUIT: " + cuit, fontCourierBold7, XBrushes.Black, 155, 142);
             // gfx.DrawMatrixCode()
 
 
@@ -210,7 +219,11 @@ namespace Crc
             gfx.DrawString("Promedio : " + promedio, fontCourier6, XBrushes.Black, 105, posy += 7);
             posy = 326;
             foreach (string recargo in recargos) gfx.DrawString(recargo, fontCourier6, XBrushes.Black, 30, posy += 7);
-
+            posy = 404;
+            foreach (string info in informaciones) gfx.DrawString(info, fontCourierBold7, XBrushes.Black, 30, posy += 7);
+            gfx.DrawString("Numeración enitida como gran contribuyente el " + cuFecha + " a las " + cuHora, fontCourierBold7, XBrushes.Black, 34, posy += 7);
+            gfx.DrawString(proxVto,fontCourierBold14,XBrushes.Black,382,451);
+            gfx.DrawString(totImporte, fontCourierBold14,XBrushes.Black, 495, 451);
             posy = 22;
             gfx.DrawString("Liq. Serv. Públicos", fontCourierBold7, XBrushes.Black, 400, posy);
             gfx.DrawString(lsp, fontCourierBold7, XBrushes.Black, 500, posy);
@@ -224,6 +237,9 @@ namespace Crc
             gfx.DrawString(totControl, fontCourierBold7, XBrushes.Black, 530, posy);
             gfx.DrawString("Fecha emisión", fontCourierBold7, XBrushes.Black, 400, posy+=10);
             gfx.DrawString(cespEmis, fontCourierBold7, XBrushes.Black, 522, posy);
+
+
+
 
             posy = 102;
             gfx.DrawString("Medidor Nro.", fontCourierBold7, XBrushes.Black, 275, posy);
@@ -246,6 +262,45 @@ namespace Crc
             gfx.DrawString(proxVto, fontCourierBold7, XBrushes.Black, 356, posy);
             gfx.DrawString("Secuencia", fontCourierBold7, XBrushes.Black, 400, posy);
             gfx.DrawString(lspSecuencia, fontCourierBold7, XBrushes.Black, 456, posy);
+
+
+
+
+
+            ////////Parte2//////
+            
+            gfx.DrawString("NIS:  " + (long.Parse(nis)).ToString(), fontCourierBold15, XBrushes.Black, 410, 548);
+            posy = 536;
+
+            gfx.DrawString(nombre, fontCourierBold13, XBrushes.Black, 25, posy);
+            gfx.DrawString(domiReal, fontCourierBold13, XBrushes.Black, 25, posy += 10);
+            gfx.DrawString(postal, fontCourierBold13, XBrushes.Black, 25, posy += 10);
+            gfx.DrawString(localidad, fontCourierBold13, XBrushes.Black, 25, posy += 10);
+            gfx.DrawString("Cond.Iva:" + condiva, fontCourierBold7, XBrushes.Black, 25, posy += 7);
+            gfx.DrawString("CUIT: " + cuit, fontCourierBold7, XBrushes.Black, 155, posy);
+
+            posy = 470;
+            gfx.DrawString("Liq. Serv. Públicos", fontCourierBold7, XBrushes.Black, 400, posy);
+            gfx.DrawString(lsp2, fontCourierBold7, XBrushes.Black, 500, posy);
+            gfx.DrawString("Código Comprobante", fontCourierBold7, XBrushes.Black, 400, posy += 10);
+            gfx.DrawString(codCom, fontCourierBold7, XBrushes.Black, 555, posy);
+            gfx.DrawString("C.E.S.P. Número", fontCourierBold7, XBrushes.Black, 400, posy += 10);
+            gfx.DrawString(cesp, fontCourierBold7, XBrushes.Black, 505, posy);
+            gfx.DrawString("Vencimiento CESP", fontCourierBold7, XBrushes.Black, 400, posy += 10);
+            gfx.DrawString(cespVto, fontCourierBold7, XBrushes.Black, 522, posy);
+            gfx.DrawString("Fecha emisión", fontCourierBold7, XBrushes.Black, 400, posy += 10);
+            gfx.DrawString(cespEmis, fontCourierBold7, XBrushes.Black, 522, posy);
+            gfx.DrawString("Control de pago", fontCourierBold7, XBrushes.Black, 400, posy += 10);
+            gfx.DrawString(totControl2, fontCourierBold7, XBrushes.Black, 530, posy);
+            gfx.DrawString("Socio", fontCourierBold7, XBrushes.Black, 400, posy += 10);
+            gfx.DrawString(socio, fontCourierBold7, XBrushes.Black, 530, posy);
+
+            gfx.DrawString(proxVto, fontCourierBold14, XBrushes.Black, 382, 824);
+            gfx.DrawString(totImporte2, fontCourierBold14, XBrushes.Black, 495, 824);
+            gfx.DrawString("Numeración enitida como gran contribuyente el " + cuFecha + " a las " + cuHora, fontCourierBold7, XBrushes.Black, 34, 827);
+
+            posy = 612;
+            foreach(string cuerpo in cuerposTabla2) gfx.DrawString(cuerpo, fontCourier7, XBrushes.Black, 242, posy += 7);
 
 
             // Save the document...
