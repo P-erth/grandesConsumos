@@ -22,7 +22,6 @@ namespace Crc
 
             var directorioAEvaluar = Path.GetFullPath("Historico\\" + textToParse.Substring(545,2) + textToParse.Substring(547,4));
             
-            //directorioAEvaluar = @"C:\Users\nacho\source\repos\P-ertho\Coopenet\Crc\Output\Historico\62020";
             if (Directory.Exists(directorioAEvaluar))
             {
                 Console.WriteLine("Ya existen las facturas para el archivo ppdd.txt");
