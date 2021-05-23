@@ -182,18 +182,19 @@ namespace Crc
             // Draw the text
             XFont fontCourierBold20 = new XFont("Courier New", 20,XFontStyle.Bold);
             XFont fontCourierBold15 = new XFont("Courier New", 15, XFontStyle.Bold);
+            XFont fontCourierBold14 = new XFont("Courier New", 14, XFontStyle.Bold);
             XFont fontCourierBold7 = new XFont("Courier New", 7, XFontStyle.Bold);
             //gfx.DrawString("Hello, World!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height),XStringFormats.Center);
 
 
 
             gfx.DrawString("NIS:  " + (long.Parse(nis)).ToString(), fontCourierBold15, XBrushes.Black, 410, 90);
-            gfx.DrawString(nombre, fontCourierBold15, XBrushes.Black, 25, 92);
-            gfx.DrawString(domiReal, fontCourierBold15, XBrushes.Black, 25, 105);
-            gfx.DrawString(postal, fontCourierBold15, XBrushes.Black, 25, 118);
-            gfx.DrawString(localidad, fontCourierBold15, XBrushes.Black, 25, 131);
-            gfx.DrawString(condiva, fontCourier7, XBrushes.Black, 25, 142);
-            gfx.DrawString(cuit, fontCourier7, XBrushes.Black, 155, 142);
+            gfx.DrawString(nombre, fontCourierBold14, XBrushes.Black, 25, 92);
+            gfx.DrawString(domiReal, fontCourierBold14, XBrushes.Black, 25, 105);
+            gfx.DrawString(postal, fontCourierBold14, XBrushes.Black, 25, 118);
+            gfx.DrawString(localidad, fontCourierBold14, XBrushes.Black, 25, 131);
+            gfx.DrawString("Cond.Iva:" + condiva, fontCourier7, XBrushes.Black, 25, 142);
+            gfx.DrawString("CUIT: " + cuit, fontCourier7, XBrushes.Black, 155, 142);
             // gfx.DrawMatrixCode()
 
 
@@ -232,12 +233,21 @@ namespace Crc
             gfx.DrawString(lspEstadoAnFec, fontCourierBold7, XBrushes.Black, 505, posy);
             gfx.DrawString("Socio", fontCourierBold7, XBrushes.Black, 275, posy+=7);
             gfx.DrawString(socio, fontCourierBold7, XBrushes.Black, 360, posy);
-
+            gfx.DrawString("Estado Actual", fontCourierBold7, XBrushes.Black, 400, posy);
+            gfx.DrawString((long.Parse(lspEstadoAc)).ToString(), fontCourierBold7, XBrushes.Black, 470, posy);
+            gfx.DrawString(lspEstadoAcFec, fontCourierBold7, XBrushes.Black, 505, posy);
             gfx.DrawString("Tarifa", fontCourierBold7, XBrushes.Black, 275, posy+=7);
+            gfx.DrawString("Factor", fontCourierBold7, XBrushes.Black, 400, posy);
+            gfx.DrawString((long.Parse(lspFactor)).ToString(), fontCourierBold7, XBrushes.Black, 480, posy);
             gfx.DrawString(lspTarifa, fontCourierBold7, XBrushes.Black, 368, posy);
-            gfx.DrawString("Pxmo. vto. desde", fontCourierBold7, XBrushes.Black, 275, posy+=14);
+            gfx.DrawString("Consumo", fontCourierBold7, XBrushes.Black, 400, posy+=7);
+            gfx.DrawString((long.Parse(lspConsumo)).ToString(), fontCourierBold7, XBrushes.Black, 470, posy);
+            gfx.DrawString("Pxmo. vto. desde", fontCourierBold7, XBrushes.Black, 275, posy+=7);
             gfx.DrawString(proxVto, fontCourierBold7, XBrushes.Black, 356, posy);
-            
+            gfx.DrawString("Secuencia", fontCourierBold7, XBrushes.Black, 400, posy);
+            gfx.DrawString(lspSecuencia, fontCourierBold7, XBrushes.Black, 456, posy);
+
+
             // Save the document...
             //document.CustomValues.CompressionMode = PdfCustomValueCompressionMode.Compressed;
             document.Options.FlateEncodeMode = PdfFlateEncodeMode.BestCompression;
