@@ -296,7 +296,7 @@ namespace Crc
             gfx.DrawString(socio, fontCourierBold7, XBrushes.Black, 530, posy);
 
             gfx.DrawString(proxVto, fontCourierBold14, XBrushes.Black, 382, 824);
-            gfx.DrawString(totImporte2, fontCourierBold14, XBrushes.Black, 495, 824);
+            gfx.DrawString(totImporte2, fontCourierBold14, XBrushes.Black, 504, 824);
             gfx.DrawString("Numeración enitida como gran contribuyente el " + cuFecha + " a las " + cuHora, fontCourierBold7, XBrushes.Black, 34, 827);
 
             posy = 612;
