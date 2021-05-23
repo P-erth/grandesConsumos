@@ -20,6 +20,17 @@ namespace Crc
             int pagina = textToParse.Length / 9009;
             int pivote = 0;//El mascherano del parseo
 
+            var directorioAEvaluar = Path.GetFullPath("Historico\\" + textToParse.Substring(545,2) + textToParse.Substring(547,4));
+            
+            //directorioAEvaluar = @"C:\Users\nacho\source\repos\P-ertho\Coopenet\Crc\Output\Historico\62020";
+            if (Directory.Exists(directorioAEvaluar))
+            {
+                Console.WriteLine("Ya existen las facturas para el archivo ppdd.txt");
+                Console.ReadLine();
+                return;
+            }
+
+
             for (int p = 0; p < pagina; p++)
             {
 
@@ -31,18 +42,7 @@ namespace Crc
                 // Get an XGraphics object for drawing
                 XGraphics gfx = XGraphics.FromPdfPage(page);
 
-
-                if (p == 0)
-                {
-                    //go
-                }
-                else
-                {
-
-                    pivote += 30;
-
-                };
-
+                if (p != 0) pivote += 30; //actualiza el pivote para una nueva pagina
 
                 //Empieza a jugar el masche
                 String nis = textToParse.Substring(pivote, 8);
@@ -321,31 +321,15 @@ namespace Crc
                 ////////////////////FINHOJA2////////////////////
 
 
-
-
                 // Save the document...
-                //document.CustomValues.CompressionMode = PdfCustomValueCompressionMode.Compressed;
                 document.Options.FlateEncodeMode = PdfFlateEncodeMode.BestCompression;
                 string filename = nis + "_" + lspSecuencia + ".pdf";
-                var pathToWrite = Path.GetFullPath("Historico\\");
-                Console.WriteLine(pathToWrite);
+                var pathToWrite = Path.GetFullPath("Historico\\" + textToParse.Substring(545, 2) + textToParse.Substring(547, 4) + "\\");
+                Directory.CreateDirectory(pathToWrite);
+               // Console.WriteLine(pathToWrite);
                 document.Save(pathToWrite + filename);
                 //System.Diagnostics.Process.Start(pathToWrite + filename);
 
-                //
-
-
-            }
-            var path = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "foo.txt");
-            string text = System.IO.File.ReadAllText(@path);
-
-
-            foreach (string value in args)
-            {
-                // Console.WriteLine(value);
-                String banana = CalculaCRC(value, Encoding.UTF8);
-                //String banana = value;
-                System.IO.File.WriteAllText(@path, banana);
             }
 
         }
