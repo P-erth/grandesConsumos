@@ -30,7 +30,7 @@ namespace Crc
             }
 
 
-            for (int p = 0; p < pagina; p++)
+            for (int p = 0; p < 1; p++)
             {
 
                 PdfDocument document = new PdfDocument();
@@ -201,6 +201,7 @@ namespace Crc
                 gfx.DrawString(localidad, fontCourierBold14, XBrushes.Black, 25, 131);
                 gfx.DrawString("Cond.Iva:" + condiva, fontCourierBold7, XBrushes.Black, 25, 142);
                 gfx.DrawString("CUIT: " + cuit, fontCourierBold7, XBrushes.Black, 155, 142);
+                gfx.DrawString("*" + cod1 + "*", fontCourier6, XBrushes.Black, 70, 168);
                 //
 
                 int posy = 142;
@@ -283,6 +284,7 @@ namespace Crc
                 gfx.DrawString(localidad, fontCourierBold13, XBrushes.Black, 25, posy += 10);
                 gfx.DrawString("Cond.Iva:" + condiva, fontCourierBold7, XBrushes.Black, 25, posy += 7);
                 gfx.DrawString("CUIT: " + cuit, fontCourierBold7, XBrushes.Black, 155, posy);
+                gfx.DrawString("*" + cod2 + "*", fontCourier6, XBrushes.Black, 70, 599);
                 posy += 8;
                 if ((cbu == "0000000000000000000000") || (cbu == "                      ") || (cbu.Trim() == ""))
                 {
@@ -386,12 +388,12 @@ namespace Crc
             Bitmap bm = bcWriter.Write(code1);
             XImage img = XImage.FromGdiPlusImage((Image)bm);
             img.Interpolate = false;
-            gfx.DrawImage(img, 30, 150);
+            gfx.DrawImage(img, 30, 147);
             //Drawing BarCode2
             bm = bcWriter.Write(code2);
             img = XImage.FromGdiPlusImage((Image)bm);
             img.Interpolate = false;
-            gfx.DrawImage(img, 30, 580);
+            gfx.DrawImage(img, 30, 578);
         }
 
         static String CalculaCRC(String value, Encoding enc)
