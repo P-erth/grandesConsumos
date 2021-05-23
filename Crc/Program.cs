@@ -190,6 +190,8 @@ namespace Crc
                 XFont fontCourierBold7 = new XFont("Courier New", 7, XFontStyle.Bold);
                 XFont fontCourier7 = new XFont("Courier New", 7, XFontStyle.Regular);
                 XFont fontCourier6 = new XFont("Courier New", 6, XFontStyle.Regular);
+                XFont fontCourierBold10 = new XFont("Courier New", 10, XFontStyle.Bold);
+                XFont fontCourierBold9 = new XFont("Courier New", 9, XFontStyle.Bold);
                 ///////////////////////////HOJA1//////////////////////////
 
                 gfx.DrawString("NIS:  " + (long.Parse(nis)).ToString(), fontCourierBold15, XBrushes.Black, 410, 90);
@@ -202,10 +204,18 @@ namespace Crc
                 //
 
                 int posy = 142;
+                if ((cbu == "0000000000000000000000") || (cbu == "                      ") || (cbu.Trim() == ""))
+                {
+                    gfx.DrawString("CODIGO DE PAGO ELECTRONICO: " + (long.Parse(nis)).ToString(), fontCourierBold10, XBrushes.Black, 305, 150);
+                }
+                else
+                {
+                    gfx.DrawString("El importe de esta factura sera debitado a su vencimiento de acuerdo al CBU", fontCourierBold7, XBrushes.Black, 245, posy);
+                    gfx.DrawString("número: " + cbu + " por lo tanto recomendamos verificar para tal", fontCourierBold7, XBrushes.Black, 245, posy += 7);
+                    gfx.DrawString("fecha tener el saldo disponible en su cuenta bancaria", fontCourierBold7, XBrushes.Black, 245, posy += 7);
+                }
+                if (lspSocial == "1") gfx.DrawString("**TARIFA SOCIAL**", fontCourierBold9, XBrushes.Black, 355, 165);
 
-                gfx.DrawString("El importe de esta factura sera debitado a su vencimiento de acuerdo al CBU", fontCourierBold7, XBrushes.Black, 245, posy);
-                gfx.DrawString("número: " + cbu + " por lo tanto recomendamos verificar para tal", fontCourierBold7, XBrushes.Black, 245, posy += 7);
-                gfx.DrawString("fecha tener el saldo disponible en su cuenta bancaria", fontCourierBold7, XBrushes.Black, 245, posy += 7);
                 posy = 185;
                 //cuerpo
                 foreach (string cuerpo in cuerpos) gfx.DrawString(cuerpo, fontCourier7, XBrushes.Black, 243, posy += 7);
@@ -273,7 +283,19 @@ namespace Crc
                 gfx.DrawString(localidad, fontCourierBold13, XBrushes.Black, 25, posy += 10);
                 gfx.DrawString("Cond.Iva:" + condiva, fontCourierBold7, XBrushes.Black, 25, posy += 7);
                 gfx.DrawString("CUIT: " + cuit, fontCourierBold7, XBrushes.Black, 155, posy);
-
+                posy += 8;
+                if ((cbu == "0000000000000000000000") || (cbu == "                      ") || (cbu.Trim() == ""))
+                {
+                    gfx.DrawString("CODIGO DE PAGO ELECTRONICO: " + (long.Parse(nis)).ToString(), fontCourierBold10, XBrushes.Black, 305, posy);
+                }
+                else
+                {
+                    posy -= 7;
+                    gfx.DrawString("El importe de esta factura sera debitado a su vencimiento de acuerdo al CBU", fontCourierBold7, XBrushes.Black, 245, posy);
+                    gfx.DrawString("número: " + cbu + " por lo tanto recomendamos verificar para tal", fontCourierBold7, XBrushes.Black, 245, posy += 7);
+                    gfx.DrawString("fecha tener el saldo disponible en su cuenta bancaria", fontCourierBold7, XBrushes.Black, 245, posy += 7);
+                }
+                if (lspSocial == "1") gfx.DrawString("**TARIFA SOCIAL**", fontCourierBold9, XBrushes.Black, 355, posy += 16);
                 posy = 470;
                 gfx.DrawString("Liq. Serv. Públicos", fontCourierBold7, XBrushes.Black, 400, posy);
                 gfx.DrawString(lsp2, fontCourierBold7, XBrushes.Black, 500, posy);
