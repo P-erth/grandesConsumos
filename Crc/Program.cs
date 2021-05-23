@@ -27,7 +27,7 @@ namespace Crc
             {
                 Console.WriteLine("Ya existen las facturas para el archivo ppdd.txt");
                 Console.ReadLine();
-                return;
+                Environment.Exit(0);
             }
 
 
@@ -326,12 +326,16 @@ namespace Crc
                 string filename = nis + "_" + lspSecuencia + ".pdf";
                 var pathToWrite = Path.GetFullPath("Historico\\" + textToParse.Substring(545, 2) + textToParse.Substring(547, 4) + "\\");
                 Directory.CreateDirectory(pathToWrite);
-               // Console.WriteLine(pathToWrite);
+                Console.WriteLine("Procesando: " + pathToWrite + filename);
                 document.Save(pathToWrite + filename);
+                
                 //System.Diagnostics.Process.Start(pathToWrite + filename);
 
             }
-
+            var pathFinal = Path.GetFullPath("Historico\\" + textToParse.Substring(545, 2) + textToParse.Substring(547, 4) + "\\");
+            Console.WriteLine("Archivos guardados en: " + pathFinal);
+            Console.WriteLine("Presione la tecla ENTER para finalizar.");
+            Console.ReadLine();
         }
 
         private static void DrawQR(XGraphics gfx, string qr1, string qr2)
