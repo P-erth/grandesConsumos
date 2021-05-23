@@ -125,12 +125,12 @@ namespace Crc
                 String lsp2 = lspParte1 + "-" + lspParte2 + "-" + textToParse.Substring(pivote += 28, 8);
                 List<string> cuerposTabla2 = new List<string>();
                 cuerposTabla2.Add(textToParse.Substring(pivote += 8, 85));
-                for (int i = 0; i < 24; i++) cuerposTabla2.Add(textToParse.Substring(pivote += 85, 85));
+                for (int i = 0; i < 24; i++) cuerposTabla2.Add(textToParse.Substring(pivote += 85, 85));//Tabla cuerpos hoja 2
                 List<string> recargosTabla2 = new List<string>();
                 recargosTabla2.Add(textToParse.Substring(pivote += 85, 50));
-                for (int i = 0; i < 11; i++) recargosTabla2.Add(textToParse.Substring(pivote += 50, 50));
+                for (int i = 0; i < 11; i++)recargosTabla2.Add(textToParse.Substring(pivote += 50, 50));//tabla recargos hoja 2
                 List<string> sepelios = new List<string>();
-                for (int i = 0; i < 12; i++) sepelios.Add(textToParse.Substring(pivote += 50, 50));
+                for (int i = 0; i < 12; i++) sepelios.Add(textToParse.Substring(pivote += 50, 50));//tabla sepelios hoja 2
                 String totControl2 = textToParse.Substring(pivote += 50, 8);
                 if (totControl2 == "00000000") totControl2 = "0";
                 String totImporte2 = long.Parse(textToParse.Substring(pivote += 8, 10)).ToString() + "." + textToParse.Substring(pivote += 10, 2);
@@ -310,12 +310,16 @@ namespace Crc
                 gfx.DrawString(totControl2, fontCourierBold7, XBrushes.Black, 530, posy);
                 gfx.DrawString("Socio", fontCourierBold7, XBrushes.Black, 400, posy += 10);
                 gfx.DrawString(socio, fontCourierBold7, XBrushes.Black, 530, posy);
+                posy = 612;
+                foreach(string recargo in recargosTabla2) gfx.DrawString(recargo, fontCourier6, XBrushes.Black, 30, posy+=6);
+                posy = 692;
+                foreach(string sepelio in sepelios) gfx.DrawString(sepelio, fontCourier6, XBrushes.Black, 30, posy+=6);
 
                 gfx.DrawString(proxVto, fontCourierBold14, XBrushes.Black, 382, 824);
                 gfx.DrawString(totImporte2, fontCourierBold14, XBrushes.Black, 504, 824);
                 gfx.DrawString("Numeración enitida como gran contribuyente el " + cuFecha + " a las " + cuHora, fontCourierBold7, XBrushes.Black, 34, 827);
                 posy = 612;
-                foreach (string cuerpo in cuerposTabla2) gfx.DrawString(cuerpo, fontCourier7, XBrushes.Black, 242, posy += 7);
+                foreach (string cuerpo in cuerposTabla2) gfx.DrawString(cuerpo, fontCourier7, XBrushes.Black, 242, posy += 6);
 
                 ////////////////////FINHOJA2////////////////////
 
