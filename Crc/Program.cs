@@ -182,6 +182,7 @@ namespace Crc
                 qr2 += crc2;
                 //////////////////////////////////////////////////////////
                 DrawQR(gfx, qr1, qr2);
+                DrawBarCode(gfx, cod1, cod2);
                 // Declaracion de fuentes
                 XFont fontCourierBold15 = new XFont("Courier New", 15, XFontStyle.Bold);
                 XFont fontCourierBold14 = new XFont("Courier New", 14, XFontStyle.Bold);
@@ -347,9 +348,9 @@ namespace Crc
             gfx.DrawImage(img, 0, 0);
 
             //Draw QR1
-            var bcWriter = new ZXing.BarcodeWriter
+            var bcWriter = new BarcodeWriter
             {
-                Format = ZXing.BarcodeFormat.QR_CODE,
+                Format = BarcodeFormat.QR_CODE,
                 Options = new ZXing.Common.EncodingOptions
                 {
                     Height = 100,
@@ -357,15 +358,40 @@ namespace Crc
                     Margin = 0
                 },
             };
-            Bitmap bm = new Bitmap(bcWriter.Write(qr1), 100, 100);
+            Bitmap bm = bcWriter.Write(qr1);
             XImage img2 = XImage.FromGdiPlusImage((Image)bm);
             img2.Interpolate = false;
             gfx.DrawImage(img2, 495, 335);
             //Draw QR2
-            bm = new Bitmap(bcWriter.Write(qr2), 100, 100);
+            bm = bcWriter.Write(qr2);
             img2 = XImage.FromGdiPlusImage((Image)bm);
             img2.Interpolate = false;
             gfx.DrawImage(img2, 495, 710);
+        }
+
+        private static void DrawBarCode(XGraphics gfx, string code1, string code2)
+        {
+            var bcWriter = new BarcodeWriter
+            {
+                Format = BarcodeFormat.CODE_128,
+                Options = new ZXing.Common.EncodingOptions
+                {
+                    Height = 20,
+                    Width = 253,
+                    Margin = 0
+                },
+            };
+            bcWriter.Options.PureBarcode = true;
+            //Drawing BarCode1
+            Bitmap bm = bcWriter.Write(code1);
+            XImage img = XImage.FromGdiPlusImage((Image)bm);
+            img.Interpolate = false;
+            gfx.DrawImage(img, 30, 150);
+            //Drawing BarCode2
+            bm = bcWriter.Write(code2);
+            img = XImage.FromGdiPlusImage((Image)bm);
+            img.Interpolate = false;
+            gfx.DrawImage(img, 30, 580);
         }
 
         static String CalculaCRC(String value, Encoding enc)
