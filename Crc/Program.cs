@@ -196,8 +196,15 @@ namespace Crc
 
                 gfx.DrawString("NIS:  " + (long.Parse(nis)).ToString(), fontCourierBold15, XBrushes.Black, 410, 90);
                 gfx.DrawString(nombre, fontCourierBold14, XBrushes.Black, 25, 92);
-                gfx.DrawString(domiReal, fontCourierBold14, XBrushes.Black, 25, 105);
-                gfx.DrawString(postal, fontCourierBold14, XBrushes.Black, 25, 118);
+                if (domiReal == postal)
+                {
+                    gfx.DrawString(domiReal, fontCourierBold14, XBrushes.Black, 25, 105);
+                }
+                else
+                {
+                    gfx.DrawString(domiReal, fontCourierBold14, XBrushes.Black, 25, 105);
+                    gfx.DrawString(postal, fontCourierBold14, XBrushes.Black, 25, 118);
+                }
                 gfx.DrawString(localidad, fontCourierBold14, XBrushes.Black, 25, 131);
                 gfx.DrawString("Cond.Iva:" + condiva, fontCourierBold7, XBrushes.Black, 25, 142);
                 gfx.DrawString("CUIT: " + cuit, fontCourierBold7, XBrushes.Black, 155, 142);
@@ -279,8 +286,15 @@ namespace Crc
                 posy = 536;
 
                 gfx.DrawString(nombre, fontCourierBold13, XBrushes.Black, 25, posy);
-                gfx.DrawString(domiReal, fontCourierBold13, XBrushes.Black, 25, posy += 10);
-                gfx.DrawString(postal, fontCourierBold13, XBrushes.Black, 25, posy += 10);
+                if(domiReal == postal)
+                {
+                    gfx.DrawString(domiReal, fontCourierBold13, XBrushes.Black, 25, posy += 10);
+                }
+                else
+                {
+                    gfx.DrawString(domiReal, fontCourierBold13, XBrushes.Black, 25, posy += 10);
+                    gfx.DrawString(postal, fontCourierBold13, XBrushes.Black, 25, posy += 10);
+                }
                 gfx.DrawString(localidad, fontCourierBold13, XBrushes.Black, 25, posy += 10);
                 gfx.DrawString("Cond.Iva:" + condiva, fontCourierBold7, XBrushes.Black, 25, posy += 7);
                 gfx.DrawString("CUIT: " + cuit, fontCourierBold7, XBrushes.Black, 155, posy);
