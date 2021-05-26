@@ -214,7 +214,7 @@ namespace Crc
                 int posy = 142;
                 if ((cbu == "0000000000000000000000") || (cbu == "                      ") || (cbu.Trim() == ""))
                 {
-                    gfx.DrawString("CODIGO DE PAGO ELECTRONICO: " + (long.Parse(nis)).ToString(), fontCourierBold10, XBrushes.Black, 305, 150);
+                    gfx.DrawString("CODIGO DE PAGO ELECTRONICO: " + nis, fontCourierBold10, XBrushes.Black, 305, 150);
                 }
                 else
                 {
